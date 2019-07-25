@@ -1,0 +1,112 @@
+---
+title: "Summarizing Data"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Setup
+
+```{r setup}
+library(tidyverse) 
+library(readxl) 
+
+orders <- read_excel("data/orders_data_set.xlsx")
+```
+
+## Summarize
+
+```{r}
+orders %>%
+  select(order_id, patient_id) %>%
+  head(4) %>%
+	summarize(order_count = n(),
+	          pt_count    = n_distinct(patient_id)) 
+```
+
+## Your Turn 1
+
+Add onto the code in the above chunk to calculate the items for a and b below.
+
+*Hints:* 
+
+- Start by adding a new code block under each item (copy/paste above or CTRL-ALT-I).
+- Then copy code from the previous code block and edit to determine the mean number of orders per patient. 
+- Next, add code to calculate the mean count of orders per department. 
+- Assign the results to new objects, orders_1a and orders_1b.
+
+a) Mean count of orders per patient
+ 
+
+
+b) Mean count of orders per department
+
+
+
+## Your Turn 2
+
+Use summarize() to calculate:
+
+a) The date of the first (or minimum) order
+
+```{r, eval=FALSE}
+orders %>% 
+	summarize(______________)
+```
+
+
+b) The median time difference between order_time and result_time
+
+*Hint: Refer to function help for missing data (NA) handling*
+
+```{r, eval=FALSE}
+orders %>%
+  mutate(result_interval = ______________) %>%
+  summarize(result_interval_med = __________________________)
+```
+
+
+## group_by
+
+```{r}
+orders %>% 
+  group_by(patient_id, department) %>%
+  head(4)
+```
+
+## group_by %>% summarize
+
+```{r}
+orders %>%
+	group_by(patient_id) %>%
+	summarize(order_count = n()) %>%
+	summarize(pt_order_count_mean = mean(order_count))
+```
+
+## Your Turn 4
+
+a) Calculate the median number of orders per patient
+
+
+
+b) Calculate the maximum number of TSH orders per patient
+
+
+
+c) (*Bonus*) The 5th and 95th percentile of the number of orders per patient
+
+
+
+## Your Turn 5
+
+Calculate the mean order count per patient for each department
+
+*Hint: summarize() rolls up a single grouping variable at a time*
+
+```{r, eval=FALSE}
+orders_5 <- orders %>%
+  ________(______________) %>%
+  summarize(_______________) %>%
+  summarize(_______________________)
+```
+

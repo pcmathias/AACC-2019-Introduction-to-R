@@ -1,0 +1,102 @@
+---
+title: "Importing Data"
+author: "Patrick Mathias"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Your Turn 1
+
+The first chunk in the document is typically where you load all packages you will use throughout the document.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+library(knitr) # making nice tables
+```
+
+## Where am I?
+
+Use `getwd()` to show your working directory.
+
+```{r wd}
+getwd()
+```
+
+## Load a file
+
+```{r load_file}
+catalog <- read_csv("data/test_catalog.csv")
+```
+
+What does RStudio tell you after you import the data?
+
+## Your Turn 2
+
+1. Locate and load the "orders_data_set.csv" file from the data folder into an object (data frame) called "orders". 
+2. Within your Environment tab (top right), click the name of the object and review the raw data.
+3. Summarize the data using the `summary()` function.
+
+```{r}
+orders <- 
+summary( )
+```
+
+## Parsing data on import
+
+The readr and readxl packages generally are effective in identifying the data type of a column when it is being imported. They will automatically parse the data with the correct type most of the time. For example, if a column has only whole numbers, the data frame that you import the data into will have a integer data type for that column. The same is true for dates and times, but there are a variety of formats that the import functions don't recognize unless you provide a date and/or time format.
+
+There are additional arguments to readr functions that can explicitly specify the data type for columns.
+
+```{r}
+orders <- read_csv("data/orders_data_set.csv", 
+                   col_types = cols(
+                     order_time = col_datetime("%m/%d/%Y %H:%M")
+                     )
+                   )
+summary(orders)
+```
+
+## Your Turn 3
+
+Import the result_time and review_time columns with the datetime data type and confirm the data types are correct.
+
+```{r}
+orders <- 
+summary(orders)
+```
+
+
+## Tabulating
+
+`tabyl` function can create quick cross tabluations to drill down into categorical fields.
+
+```{r}
+tabyl(orders, department)
+```
+
+
+```{r}
+tabyl(orders, department, order_status_c_descr)
+```
+
+## Your Turn 4
+
+1. Which 3 departments ordered the highest number of labs using “Provider Preference Lists”? (pref_list_type variable)
+2. What happens if you add another variable to the tabyl() function (3 variables total)? Start out with variables we've already created tables for.
+
+```{r}
+tabyl(orders, , )
+tabyl(orders, , )
+```
+
+## Making your tables pretty
+
+```{r}
+kable(tabyl(orders, department, pref_list_type))
+```
+
+

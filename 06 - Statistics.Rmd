@@ -1,0 +1,126 @@
+---
+title: "Statistics"
+output: html_notebook
+editor_options: 
+  chunk_output_type: inline
+---
+
+## Setup
+
+```{r setup}
+library(tidyverse) 
+library(readxl) 
+
+orders <- read_excel("../data/orders_data_set.xlsx")
+```
+
+
+## Calculate statistics with group by and summarize
+
+Recall the last exerise from the last lesson: calculate the mean order count per patient for each department.
+
+```{r}
+orders %>%	    
+	group_by(department, patient_id) %>%	    
+	summarize(order_count = n()) %>%    # summarize over department-patient_id groups
+	summarize(pt_order_count_mean = mean(order_count)) # summarize over department groups
+```
+
+## Your Turn 1
+
+In addition to the mean, for each department, calculate the median number of orders per patient and the standard deviation of the number of orders per patient. Assign to an object called stats_1.
+
+```{r, eval = FALSE}
+stats_1 <- orders %>%	    
+	group_by(department, patient_id) %>%	    
+	summarize(order_count = n()) %>%    # summarize over department-patient_id groups
+	summarize(pt_order_count_mean = mean(order_count)
+	  )
+```
+
+## Your Turn 2
+
+Install the “moments” package using the install.packages() function and load it using the library() function. For each department, calculate the skew and kurtosis for the distribution of orders per patient across the populations. Assign to an object called stats_2.
+
+```{r, eval = FALSE}
+install.packages( )
+library( )
+stat2 <- orders %>%	    
+	group_by(department, patient_id) %>%	    
+	summarize(order_count = n()) %>% 
+	summarize(
+	  
+	) 
+```
+
+## Compare two sets of count data
+
+- Is the distribution of the count of orders per patient different in the Internal Medicine and Family Medicine clinics?
+
+## Create sample distributions
+
+```{r}
+orders_per_pt_dept <- orders %>%	        
+				filter(department %in% c("INTERNAL MEDICINE CLINIC", "FAMILY MEDICINE CLINIC")) %>%
+        group_by(department, patient_id) %>%	        
+				summarize(order_count = n()) %>%     
+				ungroup()
+				
+head(orders_per_pt_dept)
+```
+
+## Visualize the distribution of order counts
+
+```{r}
+orders_per_pt_dept %>%
+	ggplot() +
+	geom_histogram(aes(x = order_count))
+```
+
+## Your Turn 3
+
+Another aesthetic mapping is "fill" - this can add a color to fill in the histogram based on another variable. Revise the plot we created by changing the fill of the histogram based on the department of the order.
+
+```{r, eval = FALSE}
+orders_per_pt_dept %>%
+	ggplot() +
+	geom_histogram(aes(x = order_count, fill = ))
+```
+
+## Describe the central tendency of the order count
+
+```{r}
+orders_per_pt_dept %>% 
+		group_by(department) %>% 
+		summarize(order_count_median = median(order_count), 
+			        order_count_mean = mean(order_count))
+```
+
+## Compare the distributions of order counts
+
+```{r}
+wilcox.test(order_count ~ department, 
+            data        = orders_per_pt_dept, 
+            alternative = "two.sided", 
+            paired      = FALSE, 
+            conf.int    = TRUE)
+```
+
+## Your Turn 4
+
+Compare order counts across the nephrology, cardiology, and gastroenterology departments. Are they different?
+
+*Hint: Convert department to a factor using function factor()*
+
+```{r, eval=FALSE}
+#solution
+orders %>%
+  mutate(department = factor(department)) %>%      # Convert department from character to factor
+  filter(__________________________________) %>%
+  group_by(_________________) %>%
+  summarize(_______________) %>%
+  ungroup() %>%
+  kruskal.test(____________ ~ _____________, 
+	             data = .)           # `.` refers to the data frame passed via the upstream pipe (%>%)
+```
+

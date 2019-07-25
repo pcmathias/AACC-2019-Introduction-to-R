@@ -1,0 +1,27 @@
+---
+title: "Joining Data"
+output: html_notebook
+---
+
+## Setup
+
+```{r setup}
+library(tidyverse) 
+library(readxl) 
+
+orders <- read_excel("data/orders_data_set.xlsx")
+patients <- read_csv("data/patient_demographics.csv")
+```
+
+## Your Turn 1
+
+```{r}
+joined_orders <- 
+```
+
+```{r}
+# solution
+joined_orders <- inner_join(orders, patients, by = c("patient_id" = "patient_id"))
+joined_orders <- inner_join(orders, patients)
+```
+
