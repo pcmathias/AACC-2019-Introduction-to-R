@@ -1,6 +1,6 @@
-# Laboratory Medicine Core Data Analysis Sessions
+# How to Truly "Excel" at Data Analysis and Visualization: An Introduction to the R Programming Language
 
-These introductory R sessions aim to teach participants without programming experience the basics of the R statistical programming language for reproducible data analysis. R is a freely available programming environment that is well-suited for common activities in data analysis including complex data manipulation, statistical analysis, automation, and publication-quality data visualization. We will introduce basic concepts of R programming as well as more generalizable best practices in working with laboratory data.
+This introductory R course aims to teach participants without programming experience the basics of the R statistical programming language for reproducible data analysis. R is a freely available programming environment that is well-suited for common activities in data analysis including complex data manipulation, statistical analysis, automation, and publication-quality data visualization. We will introduce basic concepts of R programming as well as more generalizable best practices in working with laboratory data.
 
 The goals for this course are for participants to be comfortable performing the following basic tasks on a data set:
 - Import a csv, text, or Excel file
@@ -11,20 +11,23 @@ The goals for this course are for participants to be comfortable performing the 
 - Develop simple visualizations that summarize data such as barplots and scatterplots
 - Produce a reproducible report so others can clearly understand and repeat an analysis
 
-Instructors: 
-- Patrick Mathias
-- Niklas Krumm
-- Alex Mays
- 
+Instructors:
+- Daniel Herman
+- [Patrick Mathias](https://www.linkedin.com/in/pcmathias/)
+- Joseph Rudolf
 
 ## Pre-course work/requirements
 
 - A laptop (macOS, Windows, or Linux) with WiFi
   - Please confirm you can connect to the WiFi prior to class
+<!---
 - Please complete the following survey so we can better understand your R experience and what you want out of the course: [Pre Course Survey](https://forms.gle/QSos2JwqhqUojpA79)
+--->
 - The program that we will be using to interact with R during the course is called RStudio. We will be using a cloud based RStudio server, hosted at [RStudio.Cloud](https://rstudio.cloud/), in our workshop. Our intent in using a cloud-based platform to minimize possible in-class setup issues.
-- Please follow the instructions in [this presentation](https://github.com/pcmathias/LM-Core-Data-Analysis/blob/master/presentations/00%20-%20Setup_Cloud_Account.pptx) to setup an [RStudio.Cloud](https://rstudio.cloud/) account. 
+- Please follow the instructions in [this presentation](https://github.com/pcmathias/AACC-2019-Introduction-to-R/blob/master/presentations/00%20-%20Setup_Cloud_Account.pptx) to setup an [RStudio.Cloud](https://rstudio.cloud/) account. 
+<!---
 - [Link](https://rstudio.cloud/spaces/19998/join?access_code=MVMM2UkHscHnpf%2FBa04Cb7e%2BBXnUi6g4QpFXVq6c) to RStudio.Cloud workspace
+--->
    - *Note: Some older internet browsers may not be compatible with RStudio.cloud. See [this web page](https://support.rstudio.com/hc/en-us/articles/227449447-Supported-browsers-for-RStudio-Connect) for additional information.*
 - While not required, we **highly** recommend installing RStudio Desktop on your laptop as well. See instructions below.
 
@@ -43,18 +46,18 @@ There are multiple ways to access and interact with the content, depending on wh
 
 1. If you choose to use the the cloud based RStudio instance, all the course content will be pre-loaded. 
 2. If you would prefer to run RStudio on your own computer:
-   * Download the course material from the course github [repository](https://github.com/pcmathias/LM-Core-Data-Analysis) as a \*.zip file from [here](https://github.com/pcmathias/LM-Core-Data-Analysis/archive/master.zip) 
+   * Download the course material from the course github [repository](https://github.com/pcmathias/AACC-2019-Introduction-to-R) as a \*.zip file from [here](https://github.com/pcmathias/AACC-2019-Introduction-to-R/archive/master.zip) 
    * Unzip the file to a convenient location (your desktop or documents folder)
    * When you open RStudio, set this location as your working directory 
 
 ## Original Contributions
 
-The content for this course was originally developed for the 2019 Pathology Informatics Summit workshop. The original contributors and content they were responsible for were as follows:
+The content for this course was originally developed for the 2019 [Pathology Informatics Summit](https://github.com/amromeo/api_r2019) workshop and some modifications were made for the University of Washington [Laboratory Medicine Core](https://github.com/pcmathias/LM-Core-Data-Analysis) curriculum. The original contributors and content they were responsible for were as follows:
 - Joe Rudolf: Introduction to R & RStudio
-- Patrick Mathias: Reproducible Reporting
+- Patrick Mathias: Reproducible Reporting & Importing
 - Amrom Obstfeld: Data Transformation & Exploratory Data Analysis
 - Stephan Kadauke: Data Visualization
-- Dan Herman: Data Summary & Statistics
+- Dan Herman: Summarization & Statistics
 
 ## Acknowledgments
 
