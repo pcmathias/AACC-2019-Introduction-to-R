@@ -83,16 +83,6 @@ tabyl(orders, department)
 tabyl(orders, department, order_status_c_descr)
 ```
 
-## Your Turn 4
-
-1. Which 3 departments ordered the highest number of labs using “Provider Preference Lists”? (pref_list_type variable)
-2. What happens if you add another variable to the tabyl() function (3 variables total)? Start out with variables we've already created tables for.
-
-```{r}
-tabyl(orders, , )
-tabyl(orders, , )
-```
-
 ## Making your tables pretty
 
 ```{r}
