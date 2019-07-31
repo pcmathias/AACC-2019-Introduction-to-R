@@ -11,7 +11,12 @@ editor_options:
 library(tidyverse) 
 library(readxl) 
 
-orders <- read_excel("data/orders_data_set.xlsx")
+orders <- read_csv("../data/orders_data_set.csv", 
+                   col_types = cols(
+                     order_time = col_datetime("%m/%d/%Y %H:%M"),
+                     result_time = col_datetime("%m/%d/%Y %H:%M")  # Specifying equivalent date format to variables used below
+                     )
+                   )
 ```
 
 ## Summarize
@@ -41,8 +46,9 @@ a) Mean count of orders per patient
 # solution
 orders_1a <- orders %>%
 	summarize(order_count = n(),
-	          pt_count = n_distinct(patient_id)) %>%
-  mutate(pt_order_count_mean = order_count / pt_count)
+	          pt_count = n_distinct(patient_id),
+	          pt_order_count_mean = n() / n_distinct(patient_id))
+orders_1a
 ```
 
 b) Mean count of orders per department
@@ -51,8 +57,8 @@ b) Mean count of orders per department
 # solution
 orders_1b <- orders %>%
 	summarize(order_count = n(),
-	          dept_count = n_distinct(department)) %>%
-	mutate(dept_order_count_mean = order_count / dept_count)
+	          dept_count = n_distinct(department),
+	          dept_order_count_mean = order_count / dept_count)
 ```
 
 
@@ -71,6 +77,7 @@ orders %>%
 #solution
 orders_2a <- orders %>% 
 	summarize(order_time_min = min(order_time))
+orders_2a
 ```
 
 b) The median time difference between order_time and result_time
@@ -89,6 +96,7 @@ orders %>%
 orders_2b <- orders %>% 
 	mutate(result_interval = result_time - order_time) %>%
 	summarize(result_interval_med = median(result_interval, na.rm = T))
+orders_2b
 ```
 
 ## group_by
@@ -118,9 +126,19 @@ orders_4a <- orders %>%
 	group_by(patient_id) %>%
 	summarize(order_count = n()) %>%
 	summarize(pt_order_count_median = median(order_count))
+orders_4a
 ```
 
-b) Calculate the maximum number of TSH orders per patient
+b) Calculate the maximum number of TSH orders (`proc_code` == "TSH") per patient
+
+```{r, eval=FALSE}
+orders_4b <- orders %>%  
+	______(_______ == ______) %>%	
+	group_by(patient_id) %>%
+	summarize(order_count = n()) %>%
+	summarize(pt_order_count_max = _____________)
+orders_4b
+```
 
 ```{r}
 #solution
@@ -129,6 +147,7 @@ orders_4b <- orders %>%
 	group_by(patient_id) %>%
 	summarize(order_count = n()) %>%
 	summarize(pt_order_count_max = max(order_count))
+orders_4b
 ```
 
 c) (*Bonus*) The 5th and 95th percentile of the number of orders per patient
@@ -140,6 +159,7 @@ orders_4c <- orders %>%
 	summarize(order_count = n()) %>%
 	summarize(pt_order_count_q05 = quantile(order_count, probs=0.05),  
 	          pt_order_count_q95 = quantile(order_count, probs=0.95))
+orders_4c
 ```
 
 ## Your Turn 5
@@ -162,4 +182,5 @@ orders_5 <- orders %>%
 	group_by(department, patient_id) %>%	    
 	summarize(order_count = n()) %>%    # summarize over department-patient_id groups
 	summarize(pt_order_count_mean = mean(order_count)) # summarize over department groups
+orders_5
 ```
