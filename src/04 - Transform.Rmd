@@ -31,21 +31,6 @@ select(orders, description, department)
 select(orders, c(1,4))
 ```
 
-## Your turn 2
-
-1. Alter the code to select just the `order_status_c` column.
-2. Assign the result to orders_2
-
-```{r, eval = FALSE}
-orders_2 <- select(orders, ________)
-orders_2
-```
-
-```{r}
-orders_2 <- select(orders, order_status_c)
-orders_2
-```
-
 ## Filter
 
 ```{r}
@@ -56,22 +41,22 @@ filter(orders, patient_id == 508061)
 filter(orders, proc_code == "BMP")
 ```
 
-## Your turn 3
+## Your turn 2
 
-Use the 3 code blocks below, and `filter()`, to show how you would filter the `orders` dataset.
+Use the 2 code blocks below, and `filter()`, to show how you would filter the `orders` dataset.
 
 Modify the code in this block to find:
 
 a. Every order_id that is greater than 100000
 
 ```{r, eval = FALSE}
-orders_3a <- filter(orders, ________)
-orders_3a
+orders_2a <- filter(orders, ________)
+orders_2a
 ```
 
 ```{r}
-orders_3a <- filter(orders, order_id>100000)
-orders_3a
+orders_2a <- filter(orders, order_id>100000)
+orders_2a
 ```
 
 After modifying the code above, copy and paste it into the next two code blocks, and alter it to show:
@@ -83,58 +68,7 @@ b. All of the orders where lab_status_c_descr is equal to "Final result" (assign
 ```
 
 ```{r}
-orders_3b <- filter(orders, lab_status_c_descr=="Final result")
-```
-
-c. CHALLENGE: All of the orders where reason_for_canc_c_descr is not NA (assign this to orders_3c)
-
-```{r}
-
-```
-
-```{r}
-orders_3c <- filter(orders, !is.na(reason_for_canc_c_descr))
-```
-
-## Your turn 4
-
-Write 3 filter() statements that use Boolean operators to return rows that contain:
-
-a. Orders for patient number 510909 with proc_code TSH 
-
-```{r, eval = FALSE}
-orders_4a <- filter(orders, _____)
-orders_4a
-```
-
-```{r}
-orders_4a <- filter(orders, patient_id==510909, proc_code=='TSH')
-orders_4a
-```
-
-b. Orders for one of the following departments: OB GYN CLINIC, GERIATRIC CLINIC, or PEDIATRIC CLINICS
-
-```{r, eval = FALSE}
-orders_4b <- filter(orders, _____)
-orders_4b
-```
-
-```{r}
-orders_4b <- filter(orders, department %in% c("OB GYN CLINIC", "GERIATRIC CLINIC", "PEDIATRIC CLINICS"))
-orders_4b
-```
-
-c. CHALLENGE: Orders for tests that were canceled and originally chosen from a preference list (HINT: These are coded in the pref_list_type column as either "Clinic Preference List" or "Provider Preference List")
-
-```{r, eval = FALSE}
-orders_4c <- filter(orders, _____)
-orders_4c
-```
-
-```{r}
-orders_4c <- filter(orders, order_status_c_descr == "Canceled",
-                    pref_list_type %in% c("Clinic Preference List", "Provider Preference List"))
-orders_4c
+orders_2b <- filter(orders, lab_status_c_descr=="Final result")
 ```
 
 ## Arrange
@@ -142,31 +76,6 @@ orders_4c
 ```{r}
 arrange(orders, patient_id)
 ```
-
-## Your turn 5
-
-a. Arrange orders by `order_status_c_descr` and assign the output to orders_5a. 
-What order statuses appear in the top rows of the data frame?
-
-```{r}
-
-```
-
-```{r}
-orders_5a <- arrange(orders, order_status_c_descr)
-```
-
-b. Add `order_class_c_descr` as a second (tie breaking) column to arrange on, but order it in reverse alphabetical order. 
-
-```{r}
-
-```
-
-```{r}
-orders_5b <- arrange(orders, order_status_c_descr, desc(order_class_c_descr))
-```
-
-c. What type of order class appears in the first rows of the data frame? Based on the description column, to what type of lab test does this order class seem to relate to?
 
 ## Steps and the pipe
 
@@ -178,7 +87,7 @@ VITD <- orders %>%
 VITD
 ```
 
-## Your turn 6
+## Your turn 3
 
 Use `%>%` to write a sequence of functions that: 
 
@@ -191,19 +100,18 @@ Assign the output to a new variable (orders_6).
 CHALLENGE: Use your mouse to select the name of the new data frame from the list of data sets in the upper-right pane of Rstudio. Do you notice any interesting test ordering patterns?
 
 ```{r, eval = FALSE}
-orders_6 <- orders %>% 
+orders_3 <- orders %>% 
   filter() %>% 
   select() %>% 
   arrange()
 ```
 
 ```{r}
-orders_6 <- orders %>% 
+orders_3 <- orders %>% 
   filter(department == "BEHAVIORAL HEALTH CLINIC") %>% 
   select(description, ordering_route, pref_list_type) %>% 
   arrange(description, ordering_route)
 ```
-
 
 ## mutate
 
@@ -212,7 +120,7 @@ orders %>%
 	mutate(coded_order_id = order_id/2)
 ```
 
-## Your turn 7
+## Your turn 4
 
 The weekdays() function will return the weekday for any date.
 
@@ -221,17 +129,16 @@ The weekdays() function will return the weekday for any date.
 3. Assign the result to a new variable orders_7
 
 ```{r, eval = FALSE}
-orders %>%
+orders_4 <- orders %>%
   
   
 ```
 
 ```{r}
-orders_7 <- orders %>% 
+orders_4 <- orders %>% 
   mutate(ord_wkdy = weekdays(order_time)) %>% 
   select(order_time,ord_wkdy)
 ```
-
 
 ## Replace a column with `mutate()`
 
