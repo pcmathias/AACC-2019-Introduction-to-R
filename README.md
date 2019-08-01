@@ -20,9 +20,7 @@ Instructors:
 
 - A laptop (macOS, Windows, or Linux) with WiFi
   - Please confirm you can connect to the WiFi prior to class
-<!---
-- Please complete the following survey so we can better understand your R experience and what you want out of the course: [Pre Course Survey](https://forms.gle/QSos2JwqhqUojpA79)
---->
+- Please complete the following survey so we can better understand your R experience and what you want out of the course: [Pre Course Survey](https://forms.gle/rQhMoGregT7LzczC6)
 - The program that we will be using to interact with R during the course is called RStudio. We will be using a cloud based RStudio server, hosted at [RStudio.Cloud](https://rstudio.cloud/), in our workshop. Our intent in using a cloud-based platform to minimize possible in-class setup issues.
 - Please follow the instructions in [this presentation](https://github.com/pcmathias/AACC-2019-Introduction-to-R/blob/master/presentations/00%20-%20Setup_Cloud_Account.pptx) to setup an [RStudio.Cloud](https://rstudio.cloud/) account. 
 <!---
